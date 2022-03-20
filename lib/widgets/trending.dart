@@ -26,6 +26,7 @@ class TrendingMovies extends StatelessWidget {
 
                     },
                     child: Container(
+                      padding: EdgeInsets.only(top: 20),
                       width: 140,
                       child: Column(
                         children: [
