@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kinomonster/utils/text.dart';
 
@@ -43,7 +42,7 @@ class TrendingMovies extends StatelessWidget {
                           ),
                           Container(child: Text(trending[index]['title'] != null
                               ? trending[index]['title']
-                              : 'Loading'),)
+                              : 'Loading...'),)
                         ],
                       ),
                     ),
