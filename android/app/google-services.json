@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "29871600777",
+    "project_id": "kinomonster-f10f3",
+    "storage_bucket": "kinomonster-f10f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29871600777:android:b21e62362bd0002f050258",
+        "android_client_info": {
+          "package_name": "com.kinomonster.kinomonster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29871600777-m6ejophahtbkbls512ctejvg3h437sj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqRnk4M7Gjm1tkAz209TYnqVTuMgyIrzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29871600777-m6ejophahtbkbls512ctejvg3h437sj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

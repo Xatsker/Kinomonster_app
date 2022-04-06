@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kinomonster/widgets/favorites.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../widgets/trending.dart';
@@ -8,43 +9,21 @@ import '../widgets/trending.dart';
 // api request: https://api.themoviedb.org/3/movie/550?api_key=6a0e7cc3038c68e826fe1f25db1b0801
 // api v4 token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YTBlN2NjMzAzOGM2OGU4MjZmZTFmMjVkYjFiMDgwMSIsInN1YiI6IjYyMzcyNDlmMWRhN2E2MDAxZDY2MDY5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.q4oKCxEzzkY-jH1p-6wKugOXpM1V-aXpiWEFfGVAaM0
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Favorite extends StatefulWidget {
+  const Favorite({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Favorite> createState() => _FavoriteState();
 }
 
-class _HomePageState extends State<HomePage> {
-  List trendingMovies = [];
-  final user = FirebaseAuth.instance.currentUser!;
+class _FavoriteState extends State<Favorite> {
+  List favoriteMovies = [];
 
-  final String apikey = '6a0e7cc3038c68e826fe1f25db1b0801';
-  final String token =
-      'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YTBlN2NjMzAzOGM2OGU4MjZmZTFmMjVkYjFiMDgwMSIsInN1YiI6IjYyMzcyNDlmMWRhN2E2MDAxZDY2MDY5OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.q4oKCxEzzkY-jH1p-6wKugOXpM1V-aXpiWEFfGVAaM0';
-
-  @override
-  void initState() {
-    loadMovies();
-    super.initState();
-  }
-
-  loadMovies() async {
-    TMDB tmdb = TMDB(ApiKeys(apikey, token),
-        logConfig: ConfigLogger(showLogs: true, showErrorLogs: true));
-
-    Map trendingResult = await tmdb.v3.trending.getTrending();
-
-    print(trendingResult);
-
-    setState(() {
-      trendingMovies = trendingResult['results'];
-    });
-    print(trendingMovies);
-  }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List;
+    favoriteMovies = args;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(43, 8, 8, 1),
       appBar: AppBar(
@@ -57,7 +36,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: [
-          TrendingMovies(trending: trendingMovies),
+          Text(favoriteMovies.toString(), style: TextStyle(color: Colors.white),),
+          FavoriteMovies(favorite: favoriteMovies),
         ],
       ),
     );
