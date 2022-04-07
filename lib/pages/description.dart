@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kinomonster/pages/favorite_page.dart';
+import 'package:provider/provider.dart';
 import '../models/author.dart';
+import '../models/favorite.dart';
 
 class Description extends StatefulWidget {
   final String name, description, image, vote, release;
@@ -8,12 +11,12 @@ class Description extends StatefulWidget {
 
   const Description(
       {Key? key,
-      required this.id,
-      required this.name,
-      required this.description,
-      required this.image,
-      required this.vote,
-      required this.release})
+        required this.id,
+        required this.name,
+        required this.description,
+        required this.image,
+        required this.vote,
+        required this.release})
       : super(key: key);
 
   @override
@@ -23,22 +26,15 @@ class Description extends StatefulWidget {
 class _DescriptionState extends State<Description> {
   bool isFavorite = false;
 
-  saveFavorite() async {
-
-  }
-
-  removeFavorite() async{
-
-  }
-
   @override
   Widget build(BuildContext context) {
+    isFavorite = Provider.of<FavoritesStore>(context).isFavorite(widget.id);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(43, 8, 8, 1),
       appBar: AppBar(
-          title:  Text(widget.name, style: TextStyle( fontFamily: 'RuslanDisplay', fontSize: 23 )),
-          backgroundColor: const Color.fromRGBO(125, 0, 0, 1),
-          centerTitle: true,
+        title:  Text(widget.name, style: TextStyle( fontFamily: 'RuslanDisplay', fontSize: 23 )),
+        backgroundColor: const Color.fromRGBO(125, 0, 0, 1),
+        centerTitle: true,
       ),
       body: ListView(
         padding: EdgeInsets.only(left: 10, right: 10),
@@ -85,10 +81,16 @@ class _DescriptionState extends State<Description> {
                             children: [
                               Expanded(
                                   child: IconButton(
-                                    onPressed: () {
-                                        setState(() {
-                                          (!isFavorite ? saveFavorite() : removeFavorite());
-                                        });
+                                      onPressed: () {
+                                          if(!isFavorite) {
+                                            Provider.of<FavoritesStore>(context, listen: false).addMovie(widget.id);
+                                            isFavorite = true;
+                                          }
+                                          else {
+                                            Provider.of<FavoritesStore>(context, listen: false).removeMovie(widget.id);
+                                            isFavorite = false;
+                                          }
+                                          setState(() {});
                                       },
                                       icon: Icon(Icons.favorite_border),
                                       iconSize: 50,

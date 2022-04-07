@@ -30,9 +30,15 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+
   loadMovies() async {
     TMDB tmdb = TMDB(ApiKeys(apikey, token),
         logConfig: ConfigLogger(showLogs: true, showErrorLogs: true));
+
+    //tmdb.v3.account.markAsFavorite(sessionId, accountId, mediaId, mediaType);
+    //tmdb.v3.account.getFavoriteMovies(sessionId, accountId);
+
+    //tmdb.v3.account.getFavoriteMovies(t1, accountId);
 
     Map trendingResult = await tmdb.v3.trending.getTrending();
 
