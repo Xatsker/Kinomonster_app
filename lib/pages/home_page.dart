@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
+
 import '../widgets/trending.dart';
 
 //api v3 key: 6a0e7cc3038c68e826fe1f25db1b0801

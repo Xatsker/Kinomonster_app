@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kinomonster/widgets/favorites.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../widgets/trending.dart';
@@ -19,7 +18,6 @@ class Favorite extends StatefulWidget {
 class _FavoriteState extends State<Favorite> {
   List favoriteMovies = [];
 
-
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as List;
@@ -31,14 +29,8 @@ class _FavoriteState extends State<Favorite> {
         leading: IconButton(
             onPressed: () => {Navigator.pushNamed(context, '/developers')},
             icon: const Icon(Icons.info_outline)),
-        title: const Text("Киномонстр", style: TextStyle( fontFamily: 'RuslanDisplay', fontSize: 23 )),
+        title: const Text("Избранное", style: TextStyle( fontFamily: 'RuslanDisplay', fontSize: 23 )),
         centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          Text(favoriteMovies.toString(), style: TextStyle(color: Colors.white),),
-          FavoriteMovies(favorite: favoriteMovies),
-        ],
       ),
     );
   }

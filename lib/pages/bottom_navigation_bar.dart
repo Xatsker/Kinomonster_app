@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kinomonster/models/demon_icons.dart';
+import 'package:kinomonster/pages/profile.dart';
 import 'package:kinomonster/pages/search.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'favorite_page.dart';
 import 'home_page.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -15,7 +18,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final screens = [
     HomePage(),
     SearchScreen(),
-    HomePage(),
+    Favorite(),
+    ProfileScreen(),
   ];
 
   Color mainColor = const Color.fromRGBO(2, 119, 189, 1);
@@ -36,7 +40,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           SalomonBottomBarItem(
             selectedColor: Colors.yellow[300],
             icon: const Icon(
-              Icons.home,
+              Icons.account_balance,
               size: 20,
             ),
             title: const Text('Главная'),
@@ -56,6 +60,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
               size: 20,
             ),
             title: const Text('Избранное'),
+          ),
+          SalomonBottomBarItem(
+            selectedColor: Colors.deepOrangeAccent,
+            icon: Icon(
+              Demon.vector,
+              size: 20,
+            ),
+            title: const Text('Профиль'),
           ),
         ],
       ),

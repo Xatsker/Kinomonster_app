@@ -24,7 +24,7 @@ class AboutDevelopersScreen extends StatelessWidget {
               "Киномонстр",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 48,
+                fontSize: 40,
                 fontFamily: 'RuslanDisplay',
               ),
             ),

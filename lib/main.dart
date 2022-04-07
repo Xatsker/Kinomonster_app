@@ -24,7 +24,7 @@ class MainPage extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Landing(),
-        '/profile': (context) => Profile(),
+        '/profile': (context) => ProfileScreen(),
         '/search': (context) => SearchScreen(),
         '/developers': (context) => AboutDevelopersScreen(),
         '/favorite': (context) => Favorite(),

@@ -4,9 +4,11 @@ import '../models/author.dart';
 
 class Description extends StatefulWidget {
   final String name, description, image, vote, release;
+  final int id;
 
   const Description(
       {Key? key,
+      required this.id,
       required this.name,
       required this.description,
       required this.image,
@@ -19,7 +21,15 @@ class Description extends StatefulWidget {
 }
 
 class _DescriptionState extends State<Description> {
-  List favoriteMovies = [];
+  bool isFavorite = false;
+
+  saveFavorite() async {
+
+  }
+
+  removeFavorite() async{
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +86,13 @@ class _DescriptionState extends State<Description> {
                               Expanded(
                                   child: IconButton(
                                     onPressed: () {
-                                        favoriteMovies.add(Text(widget.name));
-                                        Navigator.pushNamed(context, '/favorite', arguments: favoriteMovies);
+                                        setState(() {
+                                          (!isFavorite ? saveFavorite() : removeFavorite());
+                                        });
                                       },
                                       icon: Icon(Icons.favorite_border),
                                       iconSize: 50,
-                                      color: Colors.white)
+                                      color: (isFavorite) ? Colors.red : Colors.white)
                               ),
                               Expanded(
                                   child: Icon(Icons.share,

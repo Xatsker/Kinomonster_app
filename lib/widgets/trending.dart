@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:kinomonster/pages/description.dart';
 
-class TrendingMovies extends StatelessWidget {
+class TrendingMovies extends StatefulWidget {
   const TrendingMovies({Key? key, required this.trending}) : super(key: key);
 
   final List trending;
+
+  @override
+  State<TrendingMovies> createState() => _TrendingMoviesState();
+}
+
+class _TrendingMoviesState extends State<TrendingMovies> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class TrendingMovies extends StatelessWidget {
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
-                itemCount: trending.length,
+                itemCount: widget.trending.length,
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
@@ -22,11 +28,12 @@ class TrendingMovies extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => Description(
-                                  name: trending[index]['title'],
-                                  description: trending[index]['overview'],
-                                  image: 'http://image.tmdb.org/t/p/w500' + trending[index]['poster_path'],
-                                  vote: trending[index]['vote_average'].toString(),
-                                  release: trending[index]['release_date'],
+                                  id: widget.trending[index]['id'],
+                                  name: widget.trending[index]['title'],
+                                  description: widget.trending[index]['overview'],
+                                  image: 'http://image.tmdb.org/t/p/w500' + widget.trending[index]['poster_path'],
+                                  vote: widget.trending[index]['vote_average'].toString(),
+                                  release: widget.trending[index]['release_date'],
                               )));
                     },
                     child: Container(
@@ -39,7 +46,7 @@ class TrendingMovies extends StatelessWidget {
                             Expanded(
                               child: Image.network(
                                 'http://image.tmdb.org/t/p/w500' +
-                                    trending[index]['poster_path'],
+                                    widget.trending[index]['poster_path'],
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -52,8 +59,8 @@ class TrendingMovies extends StatelessWidget {
                                   Container(
                                     width: 240,
                                     //color: Colors.green,
-                                    child: Text(trending[index]['title'] != null
-                                        ? trending[index]['title']
+                                    child: Text(widget.trending[index]['title'] != null
+                                        ? widget.trending[index]['title']
                                         : 'Loading...',
                                         style: TextStyle(
                                             color: Colors.white,
@@ -71,8 +78,8 @@ class TrendingMovies extends StatelessWidget {
                                             fontWeight: FontWeight.w500),
                                       ),
                                       Text(
-                                        trending[index]['vote_average'] != null
-                                            ? trending[index]['vote_average'].toString()
+                                        widget.trending[index]['vote_average'] != null
+                                            ? widget.trending[index]['vote_average'].toString()
                                             : 'Loading...',
                                         style: TextStyle(
                                             color: Colors.white,
@@ -86,8 +93,8 @@ class TrendingMovies extends StatelessWidget {
                                       width: 240,
                                       height: 55,
                                       child: Text(
-                                        trending[index]['release_date'] != null
-                                            ? "Релиз: "+trending[index]['release_date'].toString()
+                                        widget.trending[index]['release_date'] != null
+                                            ? "Релиз: "+widget.trending[index]['release_date'].toString()
                                             : 'Loading...',
                                         maxLines: 3,
                                         softWrap: true,
@@ -96,10 +103,11 @@ class TrendingMovies extends StatelessWidget {
                                           color: Colors.white,
                                           fontSize: 15,
                                         ),
-                                      ))
+                                      )),
                                 ],
                               ),
-                            )
+
+                            ),
                           ],
                         )),
                   );
