@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     print(trendingMovies);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
